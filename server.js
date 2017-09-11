@@ -5,7 +5,8 @@ const port = process.env.PORT || 8080;
 
 var app = express();
 
-app.use(express.static(__dirname + './../views'));
+app.use(express.static(__dirname + '/views'));
+// app.set('views', __dirname + '/views');
 
 app.get('/',(req,res) => {
   res.render('index.html');
