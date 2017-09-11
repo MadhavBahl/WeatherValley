@@ -1,0 +1,24 @@
+{
+  "name": "weathervalley",
+  "version": "1.0.0",
+  "description": "Weather Valley\r --------------\r A website To store Weekly weather forecasts for some important places in India.\r A big data analysis project for DBMS J-component using NodeJS and MongoDB.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "express": "^4.15.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadhavBahlMD/WeatherValley.git"
+  },
+  "author": "Madhav Bahl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadhavBahlMD/WeatherValley/issues"
+  },
+  "homepage": "https://github.com/MadhavBahlMD/WeatherValley#readme"
+}

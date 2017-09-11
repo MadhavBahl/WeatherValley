@@ -27,7 +27,7 @@
                         <div class="col-sm-8 col-sm-offset-2 text">
                           <h1 style="margin-top:-50px;"><strong>WeatherValley</strong> Online Weather Database </h1>
                             <div class="description">
-                            	<p class="hidden-xs" style="margin-bottom: 120px;" >
+                            	<p class="hidden-xs" style="margin-bottom: 100px;" >
                                 Weather Valley is a website whose servers store the weekly
 	                               <strong>Weather Forecast</strong>
                                 and refreshes its data every week so that and can provide its client
@@ -54,7 +54,13 @@
 			                        <a href="http://weatherupdates.herokuapp.com/" target="_blank"><button style="width: 100%; font-weight: 500;" class="btn" >ENTER AS A GUEST</button></a>
                               <br />
                               <br />
-                              <button class="btn" style="width: 100%; font-weight: 500;">LOGIN</button>
+                              <form role="form" action="/login" method="post" class="login-form">
+                                <button class="btn" style="width: 100%; font-weight: 500;">LOGIN</button>
+                              </form>
+                              <br />
+                              <form role="form" action="/signup" method="post" class="login-form">
+                                <button class="btn" style="font-weight: 300;">Not a member? <span style="font-weight: 500;">SIGNUP NOW</span></button>
+                              </form>
 			                      </div>
 		                    </div>
                         </div>
