@@ -22,7 +22,7 @@
 
       </div>
         <!-- Top content -->
-        <div class="top-content">
+        <div id="mainContent" class="top-content">
 
             <div class="inner-bg">
                 <div class="container">
@@ -30,7 +30,7 @@
                         <div class="col-sm-8 col-sm-offset-2 text">
                           <h1 style="margin-top:-50px;"><strong>WeatherValley</strong> Online Weather Database </h1>
                             <div class="description">
-                            	<p class="hidden-xs" style="margin-bottom: 100px;" >
+                            	<p class="hidden-xs"    >
                                 Weather Valley is a website whose servers store the weekly
 	                               <strong>Weather Forecast</strong>
                                 and refreshes its data every week so that and can provide its client
@@ -43,7 +43,7 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3 style="text-align: center; margin-left: 100px; margin-bottom:-15px; font-weight: 400;">Enter The Website For Free</h3>
+                        			<h3 style="text-align: center; margin-left: 95px; margin-bottom:-15px; font-weight: 400;">LOG IN TO THE GREATNESS</h3>
                             		<!-- <p>Enter your username and password to log on:</p> -->
                         		</div>
                         		<!-- <div class="form-top-right">
@@ -56,23 +56,17 @@
 
                               <form role="form" action="/userCheck" method="post" class="login-form">
                               <div class="form-group">
-                                 <label class="sr-only" for="form-name">Name</label>
-                                <input type="text" name="form-name" placeholder="Your Name..." class="form-username form-control" id="form-username" required>
+                                 <label class="sr-only" for="username">Username</label>
+                                <input type="text" name="username" placeholder="Your UserName..." class="form-username form-control" id="form-username" required>
                               </div>
-			                    	  <div class="form-group">
-			                    		   <label class="sr-only" for="form-regno">Register Numner</label>
-			                        	<input type="text" name="form-regno" placeholder="Register Number..." class="form-username form-control" id="form-username" required>
-			                        </div>
                               <div class="form-group">
-			                    		   <label class="sr-only" for="form-regno">Email</label>
-			                        	<input type="text" name="form-email" placeholder="Email..." class="form-username form-control" id="form-username" required>
-			                        </div>
-                              <div class="form-group">
-			                    		   <label class="sr-only" for="form-regno">Phone number</label>
-			                        	<input type="number" name="form-phone" placeholder="Phone number..." class="form-username form-control" id="form-username" required>
+			                    		   <label class="sr-only" for="password">Password</label>
+			                        	<input type="password" name="password" placeholder="Password..." class="form-username form-control" id="form-username" required>
 			                        </div>
 			                        <button type="submit" class="btn" style="font-weight: 500;">SUBMIT DETAILS</button>
 			                    </form>
+
+                          <a href="/"><button style="margin-top:15px; width: 100%; font-weight: 500;" class="btn" >GO BACK</button></a>
 			                        <!-- <a href="http://weatherupdates.herokuapp.com/" target="_blank"><button style="width: 100%; font-weight: 500;" class="btn" >ENTER AS A GUEST</button></a>
                               <br />
                               <br />
