@@ -6,7 +6,8 @@
   "dependencies": {
     "body-parser": "^1.18.0",
     "ejs": "^2.5.7",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "nodemailer": "^4.1.0"
   },
   "devDependencies": {},
   "scripts": {
