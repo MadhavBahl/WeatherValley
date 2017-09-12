@@ -13,9 +13,12 @@ app.set('view engine', 'html');
 app.get('/',(req,res) => {
   res.render('index.html');
 });
- app.post('/login',(req,res) => {
-   res.render('login.html');
- });
+app.post('/login',(req,res) => {
+  res.render('login.html');
+});
+app.post('/signup',(req,res) => {
+  res.render('signup.html');
+});
 
 app.listen(port, () => {
   console.log(`The server is up on port ${port}`);
