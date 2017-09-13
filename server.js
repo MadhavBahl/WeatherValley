@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+const hbs = require('hbs');
 
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
@@ -10,29 +11,30 @@ var addUserData = require('./serverFiles/addUserData');
 const port = process.env.PORT || 8080;
 
 var app = express();
-
-
-app.use(express.static(__dirname + '/views'));
-app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
+app.set('view engine','hbs');
+app.use(express.static(__dirname + '/views'));
+// app.set('views', __dirname + '/views');
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
+// app.use(express.static(__dirname + '/views'));
+// app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/',(req,res) => {
-  res.render('index.html');
+  res.render('index.hbs');
 });
 
 app.post('/login',(req,res) => {
-  res.render('login.html');
+  res.render('login.hbs');
 });
 
 app.post('/signup',(req,res) => {
   // console.log(req.body);
-  res.render('signup.html');
+  res.render('signup.hbs');
 });
 
-app.post('/signup/sendUserInfo',(req,res) => {
+app.post('/sendUserInfo',(req,res) => {
   var userInfo =  {
     name: req.body.name,
     mobile: req.body.mobile,
@@ -48,13 +50,15 @@ app.post('/signup/sendUserInfo',(req,res) => {
       console.log(JSON.stringify(doc,undefined,2));
     }
   });
+  res.render('welcomePage.hbs',userInfo);
   mailer.sendMail(userInfo,(err,info) => {
     if(err){
       console.log('Unable to send mail ',err);
       res.status(400).send('<h1>UNABLE TO MAKE A NEW USER!!!!</h1> <h1> Please Enter A Correct Email Id</h1>');
     } else{
       console.log(info);
-      res.send(`<h1>Welcome <b>${userInfo.name}</b></h1>`);
+      // res.send(`<h1>Welcome <b>${userInfo.name}</b></h1>`);
+      res.render('welcomePage.hbs',{userInfo});
     }
   });
   console.log(userInfo);

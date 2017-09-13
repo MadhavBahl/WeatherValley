@@ -8,6 +8,7 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "handlebars": "^4.0.10",
+    "hbs": "^4.0.1",
     "mongoose": "^4.11.11",
     "nodemailer": "^4.1.0"
   },
