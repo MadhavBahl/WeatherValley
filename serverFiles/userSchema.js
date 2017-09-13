@@ -7,10 +7,9 @@ var User = mongoose.model('User',{
     minlength: 1
   },
   mobile: {
-    type: Number,
+    type: String,
     required: true,
-    min: [7, 'Enter a valid Phone number'],
-    max: 11
+
   },
   email: {
     type: String,

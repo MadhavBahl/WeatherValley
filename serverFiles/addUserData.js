@@ -1,17 +1,15 @@
 var {mongoose} = require('./mongoose');
 var {User} = require('./userSchema');
 
-var addData = (userInfo) => {
-  // var user = new User({
-  //   // name:
-  // });
-  // add.save().then((doc) => {
-  //   // res.send(200)
-  //   console.log(doc);
-  // },(e) => {
-  //   console.log(e);
-  // });
-  console.log(userInfo);
+var addData = (userInfo,callback) => {
+  var user = new User(userInfo);
+  user.save().then((doc) => {
+    return callback(undefined,doc);
+  },(e) => {
+    // console.log(e);
+    return callback(e);
+  });
+  // console.log(userInfo);
 }
 
 module.exports = {addData};

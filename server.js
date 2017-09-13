@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
 // var {mongoose} = require('./serverFiles/mongoose');
-var {User} = require('./serverFiles/userSchema');
+// var {User} = require('./serverFiles/userSchema');
 
 const port = process.env.PORT || 8080;
 
@@ -39,7 +39,14 @@ app.post('/signup/sendUserInfo',(req,res) => {
     email: req.body.email,
     pass: req.body.pass
   };
-  addUserData.addData(userInfo);
+  addUserData.addData(userInfo,(err,doc) => {
+    if(err) {
+      console.log('Unable to write data ',err);
+    } else{
+      console.log('Data was saved');
+      console.log(JSON.stringify(doc,undefined,2));
+    }
+  });
   mailer.sendMail(userInfo,(err,info) => {
     if(err){
       console.log('Unable to send mail ',err);
@@ -47,7 +54,7 @@ app.post('/signup/sendUserInfo',(req,res) => {
       console.log(info);
     }
   });
-  // console.log(userInfo);
+  console.log(userInfo);
 
   res.send('WELCOME');
 });
