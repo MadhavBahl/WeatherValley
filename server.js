@@ -1,7 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var mailer = require('./serverFiles/mailer');
+var addUserData = require('./serverFiles/addUserData');
+// var {mongoose} = require('./serverFiles/mongoose');
+var {User} = require('./serverFiles/userSchema');
 
 const port = process.env.PORT || 8080;
 
@@ -31,10 +35,11 @@ app.post('/signup',(req,res) => {
 app.post('/signup/sendUserInfo',(req,res) => {
   var userInfo =  {
     name: req.body.name,
-    mobile: req.body.name,
+    mobile: req.body.mobile,
     email: req.body.email,
     pass: req.body.pass
   };
+  addUserData.addData(userInfo);
   mailer.sendMail(userInfo,(err,info) => {
     if(err){
       console.log('Unable to send mail ',err);

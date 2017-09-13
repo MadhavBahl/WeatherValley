@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
 });
 
 var sendMail = (userInfo,callback) => {
-  console.log(userInfo);
+  // console.log(userInfo);
   var send = `Hi ${userInfo.name}, \n
 You just signed up for the Weather Valley.
 Congratulations!! You are now a part of WeatherValley,
@@ -34,4 +34,5 @@ Team WeatherValley`;
     }
   })
 }
+
 module.exports = {sendMail}
