@@ -9,7 +9,8 @@ var User = mongoose.model('User',{
   mobile: {
     type: String,
     required: true,
-
+    minlength: 10,
+    maxlength: 10
   },
   email: {
     type: String,

@@ -9,7 +9,7 @@ jQuery(document).ready(function() {
 	              , "assets/img/backgrounds/3.jpg"
 	              , "assets/img/backgrounds/1.jpg"
 								, "assets/img/backgrounds/4.jpg"
-							], {duration: 2000, fade: 650});
+							], {duration: 1900, fade: 950});
 
     /*
         Form validation

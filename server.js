@@ -42,6 +42,7 @@ app.post('/signup/sendUserInfo',(req,res) => {
   addUserData.addData(userInfo,(err,doc) => {
     if(err) {
       console.log('Unable to write data ',err);
+      res.status(400).send('UNABLE TO MAKE A NEW USER!!!!');
     } else{
       console.log('Data was saved');
       console.log(JSON.stringify(doc,undefined,2));
@@ -50,13 +51,15 @@ app.post('/signup/sendUserInfo',(req,res) => {
   mailer.sendMail(userInfo,(err,info) => {
     if(err){
       console.log('Unable to send mail ',err);
+      res.status(400).send('<h1>UNABLE TO MAKE A NEW USER!!!!</h1> <h1> Please Enter A Correct Email Id</h1>');
     } else{
       console.log(info);
+      res.send(`<h1>Welcome <b>${userInfo.name}</b></h1>`);
     }
   });
   console.log(userInfo);
 
-  res.send('WELCOME');
+
 });
 
 app.listen(port, () => {
