@@ -32,7 +32,7 @@ Team WeatherValley`;
     } else {
       return callback(undefined, info.response);
     }
-  })
+  });
 }
 
 module.exports = {sendMail}

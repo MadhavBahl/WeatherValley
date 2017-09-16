@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 const hbs = require('hbs');
 
 var mailer = require('./serverFiles/mailer');
-// var addUserData = require('./serverFiles/addUserData');
+var addUserData = require('./serverFiles/addUserData');
 // var {mongoose} = require('./serverFiles/mongoose');
 // var {User} = require('./serverFiles/userSchema');
 
@@ -41,15 +41,15 @@ app.post('/sendUserInfo',(req,res) => {
     email: req.body.email,
     pass: req.body.pass
   };
-  // addUserData.addData(userInfo,(err,doc) => {
-  //   if(err) {
-  //     console.log('Unable to write data ',err);
-  //     res.status(400).send('UNABLE TO MAKE A NEW USER!!!!');
-  //   } else{
-  //     console.log('Data was saved');
-  //     console.log(JSON.stringify(doc,undefined,2));
-  //   }
-  // });
+  addUserData.addData(userInfo,(err,doc) => {
+    if(err) {
+      console.log('Unable to write data ',err);
+      res.status(400).send('UNABLE TO MAKE A NEW USER!!!!');
+    } else{
+      console.log('Data was saved');
+      console.log(JSON.stringify(doc,undefined,2));
+    }
+  });
   res.render('welcomePage.hbs',userInfo);
   mailer.sendMail(userInfo,(err,info) => {
     if(err){
