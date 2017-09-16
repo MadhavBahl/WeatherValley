@@ -36,7 +36,25 @@ app.post('/signup',(req,res) => {
   // console.log(req.body);
   res.render('signup.hbs');
 });
+app.post('/welcome',(req,res) => {
+  var userInfo = {
+    email: req.body.email,
+    pass: req.body.pass
+  }
 
+  checkExistingUser(userInfo,(exist) => {
+    if(exist) {
+      console.log('The User Exists',exist);
+      if(userInfo.pass === exist.pass)
+        res.render('welcomePage.hbs',exist);
+      else {
+        res.render('wrongPass.hbs');
+      }
+    } else{
+      res.render('loginFALSEsignup.hbs');
+    }
+  });
+});
 app.post('/sendUserInfo',(req,res) => {
   var userInfo =  {
     name: req.body.name,
