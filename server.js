@@ -28,7 +28,9 @@ app.get('/',(req,res) => {
 app.post('/login',(req,res) => {
   res.render('login.hbs');
 });
-
+app.get('/signup',(req,res) => {
+  res.render('signup.hbs');
+});
 app.post('/signup',(req,res) => {
   // console.log(req.body);
   res.render('signup.hbs');
