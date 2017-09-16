@@ -5,6 +5,7 @@ const hbs = require('hbs');
 
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
+var {checkExistingUser} = require('./serverFiles/checkUser');
 // var {mongoose} = require('./serverFiles/mongoose');
 // var {User} = require('./serverFiles/userSchema');
 
@@ -43,27 +44,37 @@ app.post('/sendUserInfo',(req,res) => {
     email: req.body.email,
     pass: req.body.pass
   };
-  addUserData.addData(userInfo,(err,doc) => {
-    if(err) {
-      console.log('Unable to write data ',err);
-      res.status(400).send('UNABLE TO MAKE A NEW USER!!!!');
+  checkExistingUser(userInfo,(exist) => {
+    if(exist){
+      console.log('The Given User Already Exists');
+      res.render('UserExistsSignup.hbs');
+
     } else{
-      console.log('Data was saved');
-      console.log(JSON.stringify(doc,undefined,2));
+
+      addUserData.addData(userInfo,(err,doc) => {
+        if(err) {
+          console.log('Unable to write data ',err);
+          res.status(400).send('UNABLE TO MAKE A NEW USER!!!!');
+        } else{
+          console.log('Data was saved');
+          console.log(JSON.stringify(doc,undefined,2));
+        }
+      });
+      res.render('welcomePage.hbs',userInfo);
+      mailer.sendMail(userInfo,(err,info) => {
+        if(err){
+          console.log('Unable to send mail ',err);
+          res.status(400).send('<h1>UNABLE TO MAKE A NEW USER!!!!</h1> <h1> Please Enter A Correct Email Id</h1>');
+        } else{
+          console.log(info);
+          // res.send(`<h1>Welcome <b>${userInfo.name}</b></h1>`);
+          res.render('welcomePage.hbs',{userInfo});
+        }
+      });
+      console.log(userInfo);
     }
   });
-  res.render('welcomePage.hbs',userInfo);
-  mailer.sendMail(userInfo,(err,info) => {
-    if(err){
-      console.log('Unable to send mail ',err);
-      res.status(400).send('<h1>UNABLE TO MAKE A NEW USER!!!!</h1> <h1> Please Enter A Correct Email Id</h1>');
-    } else{
-      console.log(info);
-      // res.send(`<h1>Welcome <b>${userInfo.name}</b></h1>`);
-      res.render('welcomePage.hbs',{userInfo});
-    }
-  });
-  console.log(userInfo);
+
 
 
 });
