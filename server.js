@@ -25,8 +25,10 @@ app.use(express.static(__dirname + '/views'));
 app.get('/',(req,res) => {
   res.render('index.hbs');
 });
-
 app.post('/login',(req,res) => {
+  res.render('login.hbs');
+});
+app.get('/login',(req,res) => {
   res.render('login.hbs');
 });
 app.get('/signup',(req,res) => {
@@ -35,6 +37,32 @@ app.get('/signup',(req,res) => {
 app.post('/signup',(req,res) => {
   // console.log(req.body);
   res.render('signup.hbs');
+});
+app.get('/forgotPassword',(req,res) => {
+  res.render('forgotPassword.hbs');
+})
+app.post('/forgotPassword',(req,res) => {
+  var userInfo = {
+    email: req.body.email
+  }
+  checkExistingUser(userInfo,(exist) => {
+    // console.log(exist);
+    if(exist) {
+      // res.send(`<h1> The Given User Is Inside The Database As: ${exist} </h1>`);
+      mailer.sendMail(exist,(err,info) => {
+        if(err) {
+          res.send('Could Not Send Your Password!!!');
+        } else{
+          console.log(`This User Forgot Password But Mail Was Sent: ${info}`);
+          res.render('login.hbs');
+        }
+      })
+
+    }
+    else {
+      res.render('loginFALSEsignup.hbs');
+    }
+  });
 });
 app.post('/welcome',(req,res) => {
   var userInfo = {

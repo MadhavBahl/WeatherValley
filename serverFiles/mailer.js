@@ -11,8 +11,8 @@ var transporter = nodemailer.createTransport({
 var sendMail = (userInfo,callback) => {
   // console.log(userInfo);
   var send = `Hi ${userInfo.name}, \n
-You just signed up for the Weather Valley.
-Congratulations!! You are now a part of WeatherValley,
+You have signed up for the Weather Valley.
+Congratulations!! You are a part of WeatherValley,
 Your Password is : "${userInfo.pass}". Please keep it safe and secret :) \n
 REGARDS,
 Madhav Bahl
