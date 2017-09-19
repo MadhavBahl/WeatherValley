@@ -6,6 +6,7 @@ const hbs = require('hbs');
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
 var {checkExistingUser} = require('./serverFiles/checkUser');
+var {getGeoLoc} = require('./serverFiles/googleGeo');
 // var {mongoose} = require('./serverFiles/mongoose');
 // var {User} = require('./serverFiles/userSchema');
 
@@ -25,12 +26,14 @@ app.use(express.static(__dirname + '/views'));
 app.get('/',(req,res) => {
   res.render('index.hbs');
 });
+
 app.post('/login',(req,res) => {
   res.render('login.hbs');
 });
 app.get('/login',(req,res) => {
   res.render('login.hbs');
 });
+
 app.get('/signup',(req,res) => {
   res.render('signup.hbs');
 });
@@ -38,6 +41,7 @@ app.post('/signup',(req,res) => {
   // console.log(req.body);
   res.render('signup.hbs');
 });
+
 app.get('/forgotPassword',(req,res) => {
   res.render('forgotPassword.hbs');
 })
@@ -64,6 +68,10 @@ app.post('/forgotPassword',(req,res) => {
     }
   });
 });
+
+app.get('/welcome',(req,res) => {
+  res.redirect('/');
+});
 app.post('/welcome',(req,res) => {
   var userInfo = {
     email: req.body.email,
@@ -83,6 +91,7 @@ app.post('/welcome',(req,res) => {
     }
   });
 });
+
 app.post('/sendUserInfo',(req,res) => {
   var userInfo =  {
     name: req.body.name,
@@ -106,7 +115,7 @@ app.post('/sendUserInfo',(req,res) => {
           console.log(JSON.stringify(doc,undefined,2));
         }
       });
-      res.render('welcomePage.hbs',userInfo);
+      // res.render('welcomePage.hbs',userInfo);
       mailer.sendMail(userInfo,(err,info) => {
         if(err){
           console.log('Unable to send mail ',err);
@@ -114,7 +123,7 @@ app.post('/sendUserInfo',(req,res) => {
         } else{
           console.log(info);
           // res.send(`<h1>Welcome <b>${userInfo.name}</b></h1>`);
-          res.render('welcomePage.hbs',{userInfo});
+          res.render('welcomePage.hbs',userInfo);
         }
       });
       console.log(userInfo);

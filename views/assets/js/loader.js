@@ -10,3 +10,7 @@ window.onload = () => {
   loader.style.display = 'none';
   console.log('Loader Off');
 };
+
+function alertFunc() {
+  alert('YOU WERE SUCCESSFULLY LOGGED OUT!!');
+}

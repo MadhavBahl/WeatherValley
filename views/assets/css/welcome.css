@@ -1,0 +1,40 @@
+@font-face{
+    src:url("../fonts/Roboto-Light.ttf");
+    font-family:roboto;
+}
+
+@font-face{
+    src:url("../fonts/SanFrancis.ttf");
+    font-family:sanf;
+}
+
+@font-face{
+    src:url("../fonts/Helvetica.otf");
+    font-family:hel;
+}
+#loader{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('../img/loader.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(255,255,255);
+}
+body{
+  background-color: rgb(95,95,110);
+  overflow-x: hidden;
+    font-family: 'Titillium Web', sans-serif;
+}
+#logo{
+  height: 180%;
+  margin-top: -4%;
+
+}
+nav{
+  /*position: fixed;
+  width: 100%;
+  border: 0px solid black;
+  border-radius: 0px;*/
+  border: 0px solid black;
+}
