@@ -1,7 +1,7 @@
 var request = require('request');
 
 var getGeoLoc = (address,callback) => {
-  var encodedAddress = encodeURIcomponent(address);
+  var encodedAddress = encodeURIComponent(address);
   request({
     url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
     json: true

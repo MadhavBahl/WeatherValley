@@ -6,7 +6,10 @@ const hbs = require('hbs');
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
 var {checkExistingUser} = require('./serverFiles/checkUser');
+var {checkExistingPin} = require('./serverFiles/checkPin');
 var {getGeoLoc} = require('./serverFiles/googleGeo');
+var {getWeather} = require('./serverFiles/darkSky');
+var addPin = require('./serverFiles/addPin');
 // var {mongoose} = require('./serverFiles/mongoose');
 // var {User} = require('./serverFiles/userSchema');
 
@@ -22,6 +25,42 @@ app.use(express.static(__dirname + '/views'));
 // app.set('view engine', 'html');
 // app.use(express.static(__dirname + '/views'));
 // app.use(bodyParser.urlencoded({ extended: true }));
+
+
+/* ========== ENTER THE PIN CODES ========== */
+
+app.get('/enterPin',(req,res) => {
+  res.render('enterPin.hbs');
+});
+app.post('/enterPin',(req,res) => {
+  var pin = {
+    pin: req.body.pin
+  }
+  console.log(pin);
+  checkExistingPin(pin,(data) => {
+    if(data) {
+      res.send('<h1> The given Pin already exists</h1>');
+    } else {
+      console.log(data);
+      addPin.addData(pin,(err,doc) => {
+        if(err) {
+          console.log('Unable to write data ',err);
+          res.status(400).send('UNABLE TO ADD A NEW PIN!!!!');
+        } else{
+          console.log('Data was saved');
+          console.log(JSON.stringify(doc,undefined,2));
+        }
+      });
+
+        res.redirect('/enterPin');  
+    }
+
+  })
+
+
+});
+
+/* ========== Main Routes ========== */
 
 app.get('/',(req,res) => {
   res.render('index.hbs');
@@ -41,7 +80,15 @@ app.post('/signup',(req,res) => {
   // console.log(req.body);
   res.render('signup.hbs');
 });
-
+app.get('/getLoc',(req,res) => {
+  getGeoLoc('632014',(err,data) => {
+    if(err) {
+      res.send(err);
+    } else{
+      res.send(data);
+    }
+  });
+});
 app.get('/forgotPassword',(req,res) => {
   res.render('forgotPassword.hbs');
 })
