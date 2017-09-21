@@ -9,6 +9,7 @@ var {checkExistingUser} = require('./serverFiles/checkUser');
 var {checkExistingPin} = require('./serverFiles/checkPin');
 var {getGeoLoc} = require('./serverFiles/googleGeo');
 var {getWeather} = require('./serverFiles/darkSky');
+var {fetchpin} = require('./serverFiles/getPin');
 var addPin = require('./serverFiles/addPin');
 // var {mongoose} = require('./serverFiles/mongoose');
 // var {User} = require('./serverFiles/userSchema');
@@ -52,12 +53,19 @@ app.post('/enterPin',(req,res) => {
         }
       });
 
-        res.redirect('/enterPin');  
+        res.redirect('/enterPin');
     }
 
   })
 
 
+});
+
+app.get('/getPin',(req,res) => {
+  fetchpin((err,data) => {
+    if(err) res.send(`<h1> ERROR!!!! ${err}`);
+    else res.send(data);
+  })
 });
 
 /* ========== Main Routes ========== */
