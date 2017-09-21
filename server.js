@@ -68,6 +68,45 @@ app.get('/getPin',(req,res) => {
   })
 });
 
+app.get('/getWtr',(req,res) => {
+  fetchpin((err,data) => {
+    if(err) return res.status(400).send('<h1> ERROR!! Unable to fetch the database</h1>');
+    else{
+      if(!data) return res.status(400).send('<h1> ERROR!! Database Empty! </h1>');
+      else {
+        var len = data.length;
+        var lat,lng;
+        var weatherDB = [];
+        var flag = 0;
+        for(var i=0;i<len;i++){
+          getGeoLoc(data[i].pin,(err,loc) => {
+            if(err){
+              return res.send('<h1> ERROR!! Unable to fetch the geoLoc</h1>');
+            }
+
+            lat = loc.latitude;
+            lng = loc.longitude;
+            console.log('Lat, lng: ',lat,lng);
+            getWeather(lat,lng,(err,weather) => {
+              if(err) console.log(err);
+              else {
+                // console.log(weather);
+                // res.send(weather);
+                weatherDB.push(weather);
+                flag++;
+              }
+            });
+          });
+        }
+
+        if(flag==len-1){
+          console.log(weatherDB);
+          res.send(weatherDB);
+        }
+      }
+    }
+  })
+});
 /* ========== Main Routes ========== */
 
 app.get('/',(req,res) => {
