@@ -2,10 +2,10 @@ var {mongoose} = require('./mongoose');
 var {Pin} = require('./pinSchema');
 
 var checkExistingPin = (pincode,callback) => {
-  console.log('Checking Pin: ',pincode.pin);
-  var pin = new Pin(pincode);
+  console.log('Checking Pin: ',pincode);
+  // var pin = new Pin({pincode});
   Pin.findOne({
-    pin: pincode.pin
+    pin: pincode
   }).then((pinMain) => {
     if(!pinMain){
       console.log('Pincode does not exists');

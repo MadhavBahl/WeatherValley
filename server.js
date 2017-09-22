@@ -7,6 +7,7 @@ var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
 var {checkExistingUser} = require('./serverFiles/checkUser');
 var {checkExistingPin} = require('./serverFiles/checkPin');
+var {Weather} = require('./serverFiles/weatherSchema');
 var {getGeoLoc} = require('./serverFiles/googleGeo');
 var {getWeather} = require('./serverFiles/darkSky');
 var {fetchpin} = require('./serverFiles/getPin');
@@ -34,15 +35,13 @@ app.get('/enterPin',(req,res) => {
   res.render('enterPin.hbs');
 });
 app.post('/enterPin',(req,res) => {
-  var pin = {
-    pin: req.body.pin
-  }
+  var pin = req.body.pin;
   console.log(pin);
   checkExistingPin(pin,(data) => {
     if(data) {
       res.send('<h1> The given Pin already exists</h1>');
     } else {
-      console.log(data);
+      // console.log(data);
       addPin.addData(pin,(err,doc) => {
         if(err) {
           console.log('Unable to write data ',err);
@@ -68,41 +67,67 @@ app.get('/getPin',(req,res) => {
   })
 });
 
-app.get('/getWtr',(req,res) => {
+app.get('/saveWeather',(req,res) => {
   fetchpin((err,data) => {
     if(err) return res.status(400).send('<h1> ERROR!! Unable to fetch the database</h1>');
     else{
       if(!data) return res.status(400).send('<h1> ERROR!! Database Empty! </h1>');
       else {
         var len = data.length;
-        var lat,lng;
-        var weatherDB = [];
-        var flag = 0;
+
         for(var i=0;i<len;i++){
-          getGeoLoc(data[i].pin,(err,loc) => {
-            if(err){
-              return res.send('<h1> ERROR!! Unable to fetch the geoLoc</h1>');
+
+          console.log('Data[i]: \n', JSON.stringify(data[i],undefined,2));
+          let tempData = data[i];
+          Weather.findOne({
+            lat: data[i].lat,
+            lng: data[i].lng
+          },(err,result) => {
+            // console.log(tempData,'inside then call');
+            if(!result){
+              // console.log(tempData);
+              console.log(tempData,'is being saved');
+              getWeather(tempData.lat,tempData.lng,(err,weather) => {
+                if(err) console.log(err);
+                else {
+                  console.log(weather);
+                  // res.send(weather);
+                  enterWeather = new Weather(weather);
+                  enterWeather.save();
+                }
+              });
+              // let enterWeather = new Weather(tempData);
+              // enterWeather.save().then((doc) => {
+              //   console.log('doc saved:',doc);
+              //   res.send(doc);
+              // }).catch((e) => {
+              //   console.log('Error!! ',e);
+              // });
             }
+            else {
+              console.log(tempData,'Already exists');
+            }
+          })
 
-            lat = loc.latitude;
-            lng = loc.longitude;
-            console.log('Lat, lng: ',lat,lng);
-            getWeather(lat,lng,(err,weather) => {
-              if(err) console.log(err);
-              else {
-                // console.log(weather);
-                // res.send(weather);
-                weatherDB.push(weather);
-                flag++;
-              }
-            });
-          });
+
+            // getGeoLoc(data[i].pin,(err,loc) => {
+            //   if(err){
+            //     return res.send('<h1> ERROR!! Unable to fetch the geoLoc</h1>');
+            //   }
+            //
+            //   lat = loc.latitude;
+            //   lng = loc.longitude;
+            //
+            //   console.log('Lat, lng: ',lat,lng);
+            //
+            //
+
+            // });
+
+
         }
 
-        if(flag==len-1){
-          console.log(weatherDB);
-          res.send(weatherDB);
-        }
+
       }
     }
   })

@@ -3,7 +3,7 @@ var {Pin} = require('./pinSchema');
 
 var fetchpin = (callback) => {
   Pin.find().then((result) => {
-    console.log(result);
+    // console.log(result);
     return callback(undefined,result);
   },(e) => {
     console.log(e);
