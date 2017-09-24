@@ -11,6 +11,7 @@ var {Weather} = require('./serverFiles/weatherSchema');
 var {getGeoLoc} = require('./serverFiles/googleGeo');
 var {getWeather} = require('./serverFiles/darkSky');
 var {fetchpin} = require('./serverFiles/getPin');
+var {fetchWeatherFromDB} = require('./serverFiles/WeatherDB');
 var addPin = require('./serverFiles/addPin');
 // var {mongoose} = require('./serverFiles/mongoose');
 // var {User} = require('./serverFiles/userSchema');
@@ -63,6 +64,13 @@ app.post('/enterPin',(req,res) => {
 app.get('/getPin',(req,res) => {
   fetchpin((err,data) => {
     if(err) res.send(`<h1> ERROR!!!! ${err}`);
+    else res.send(data);
+  })
+});
+
+app.get('/getWeather',(req,res) => {
+  fetchWeatherFromDB((err,data) => {
+    if(err) res.status(400).send(`<h1> ERROR!!!! ${err}`)
     else res.send(data);
   })
 });
@@ -127,7 +135,7 @@ app.get('/saveWeather',(req,res) => {
 
         }
 
-
+        res.send('<h1> WOWWAWW</h1>');
       }
     }
   })
