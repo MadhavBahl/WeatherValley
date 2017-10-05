@@ -104,35 +104,12 @@ app.get('/saveWeather',(req,res) => {
                   enterWeather.save();
                 }
               });
-              // let enterWeather = new Weather(tempData);
-              // enterWeather.save().then((doc) => {
-              //   console.log('doc saved:',doc);
-              //   res.send(doc);
-              // }).catch((e) => {
-              //   console.log('Error!! ',e);
-              // });
+
             }
             else {
               console.log(tempData,'Already exists');
             }
           })
-
-
-            // getGeoLoc(data[i].pin,(err,loc) => {
-            //   if(err){
-            //     return res.send('<h1> ERROR!! Unable to fetch the geoLoc</h1>');
-            //   }
-            //
-            //   lat = loc.latitude;
-            //   lng = loc.longitude;
-            //
-            //   console.log('Lat, lng: ',lat,lng);
-            //
-            //
-
-            // });
-
-
         }
 
         res.send('<h1> WOWWAWW</h1>');

@@ -20,7 +20,7 @@ Project Head,
 Team WeatherValley`;
 
   var mailOptions = {
-    from: 'madhavbahl20@gmail.com',
+    from: 'PROJECT WEATHER VALLEY',
     to: userInfo.email,
     subject: 'Welcome To Weather Valley',
     text: send
