@@ -1,7 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var moment = require('moment');
 const hbs = require('hbs');
+var fs = require('fs');
 
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
@@ -74,6 +76,10 @@ app.get('/getWeather',(req,res) => {
     else res.send(data);
   })
 });
+
+
+
+/* ===== Manual Weather Save ===== */
 
 app.get('/saveWeather',(req,res) => {
   fetchpin((err,data) => {
@@ -240,4 +246,22 @@ app.post('/sendUserInfo',(req,res) => {
 
 app.listen(port, () => {
   console.log(`The server is up on port ${port}`);
+
+  /* ===== Automated Weather Save ===== */
+
+  var currentDay = moment().format("dddd");
+  console.log("Current Date Is: ",currentDay);
+  
+  if(currentDay === 'Wednesday') {
+    fs.readFile('./flag.txt','utf8', (err, data) => {
+      if (err) throw err;
+      console.log(data);
+      if(data === 'NO') {
+        fs.writeFile('flag.txt', 'YES', (err) => {
+          if (err) throw err;
+          console.log('The file has been saved!');
+        });
+      }
+    });
+  }
 });
