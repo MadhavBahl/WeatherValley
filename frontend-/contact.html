@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+ <head><title>Reach us</title>
+ <link rel="stylesheet" type="text/css" href="main2.css"/>
+
+<style>
+#displaybox {
+	z-index: 10000;
+	opacity: 0.9;
+	background-color:#000000;
+	position:fixed; top:80px; left:280px; width:60%; height:80%; color:#FFFFFf; vertical-align:middle;
+}
+</style>
+<script>
+function clicker(){
+        document.getElementById("h3").className = "";
+        document.getElementById("s1").className = "active";
+	var thediv=document.getElementById('displaybox');
+	if(thediv.style.display == "none"){
+		thediv.style.display = "";
+		thediv.innerHTML = "<a href='#' onclick='return clicker();' style='float:right'><img src=cross.jpg width=20px height=20px></a><pre><p style='color:#1a53ff;font-size:30px;'>   Register here</p><form name=f1 method=post action='jsp1.jsp' onsubmit='return signup();'><br><p style='color:#993399;font-size:15px'>                           FIRST NAME         <input type='text' name='unm' style='color:#000000; font-family: Verdana; font-size: 12px; font-weight: bold;background-color: #72A4D2'><br><br>                           LAST NAME          <input type='text' name='lnm' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' ><br><br>                           EMAIL              <input type='text' name='eml' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' ><br><br>                           PASSWORD           <input type='password' name='psw1' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' ><br><br>                           RE-ENTER PASSWORD  <input type='password' name='psw2' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' ><br><br>                           BIRTHDAY           <input type='date' name='dt' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' ><br><br>                           SEX               <input type='radio' name='gn' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' >MALE  <input type='radio' name='gn' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' >FEMALE<BR><br>                                 <input type='submit' value='Sign-up' style='background-color: #1a53ff;color: white;font-size: 16px;padding: 12px 32px;text-align: center;' >      <input type='reset' value='Reset' style='background-color: #1a53ff;color: white;font-size: 16px;padding: 12px 34px;text-align: center;' ></form></p>";
+	}else{
+		thediv.style.display = "none";
+		thediv.innerHTML = '';
+                document.getElementById("s1").className = "";
+                document.getElementById("h3").className = "active";
+	}
+	return false;
+}
+function clicker1(){
+        document.getElementById("h3").className = "";
+        document.getElementById("s2").className = "active";
+	var thediv=document.getElementById('displaybox');
+	if(thediv.style.display == "none"){
+		thediv.style.display = "";
+		thediv.innerHTML = "<a href='#' onclick='return clicker1();' style='float:right'><img src=cross.jpg width=20px height=20px></a><pre><p style='color:#1a53ff;font-size:30px;'>   Enter classroom</p><form name=f2 method=post action='jsp2.jsp' onsubmit='return login();'><br><br><p style='color:#993399;font-size:15px'>                           EMAIL              <input type='text' name='em' style='color:#000000; font-family: Verdana; font-size: 12px; font-weight: bold;background-color: #72A4D2'><br><br>                           PASSWORD           <input type='password' name='psd' style='color: #000000;font-weight: bold; font-family: Verdana; font-size: 12px; background-color: #72A4D2' ><BR><br><br>                                  <input type='submit' value='Login' style='background-color: #1a53ff;color: white;font-size: 16px;padding: 12px 32px;text-align: center;'>     <input type='reset' value='Reset' style='background-color: #1a53ff;color: white;font-size: 16px;padding: 12px 34px;text-align: center;'><br><br>                                       <img src=p22.jpg height=200px width=170px></form></p>";
+	}else{
+		thediv.style.display = "none";
+		thediv.innerHTML = '';
+                document.getElementById("s2").className = "";
+                document.getElementById("h3").className = "active";
+	}
+	return false;
+}
+</script>
+
+<style>
+body{
+background-repeat: no-repeat;
+background-size:100% 100%;
+}
+</style>
+
+<script>
+
+
+
+        function updateClock( )
+        {
+        var currentTime = new Date ( );
+        var currentHours = currentTime.getHours ( );
+        var currentMinutes = currentTime.getMinutes ( );
+        var currentSeconds = currentTime.getSeconds ( );
+        currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+        currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+        var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+        currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+        currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+        var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+        document.getElementById("pg").innerHTML=currentTimeString;
+        setTimeout("updateClock()",1000);
+        }
+
+        window.onload=updateClock;
+
+
+</script>
+
+
+</head>
+ <body style="background-size:100% 700px;color:#2929a3">
+
+   <ul>
+      <li><a id="h1" href="index.html">Home</a></li>
+      <li><a id="h2" href="about.html">About us</a></li>
+      <li><a id="h3" class="active" href="contact.html">Reach us</a></li>
+     <ul  style="float:right;list-style-type:none;">
+      <li><a href="#sign up" id="s1" onclick='return clicker();'>Sign up</a></li>
+      <li><a href="#log in" id="s2" onclick='return clicker1();'>Log in</a></li>
+     </ul>
+   </ul>
+
+<div id="feed">
+<p style="font-size:30px;color:black;text-align:center;">Get in Touch..</p>
+<pre style="color:black;font-size:20px;font-family:New times roman"><form name=fd method="post" action="feed.jsp">
+         Name                 <input type="text" name='nm' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br>
+         Email                 <input type="text" name='email' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br> 
+         Phone number    <input type="text" name='phn' style='color:#000000; font-size: 12px; background-color: #c2c2d6'><br>
+         City                    <input type="text" name='cty' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br>
+         Form Type         <select name="typ" style='color:#000000; font-size: 12px;background-color: #c2c2d6'>
+               <option value="1">Feedback</option>
+               <option value="2">Enquiry</option>
+               <option value="3">Suggestions</option>
+               </select><br>
+         Message            <textarea name="txa" rows=8 cols=8 style='color:#000000; font-size: 12px; ;background-color: #c2c2d6'> </textarea><br>
+                             <input type='submit' value='Submit' style='background-color: #52527a;color: white;font-size: 16px;padding: 12px 32px;text-align: center;'>
+</form>
+</div>
+<div id="cont">
+<b>WeatherValley Pvt. Ltd.</b><br>
+<p style="color:#0066ff">ADDRESS</p>
+Vellore Institute of Technology,
+Vellore<br>
+<p style="color:#0066ff">PHONE NO.</p>
+7092023456<br>
+9629354328<br>
+<p style="color:#0066ff">EMAIL</p>
+projectweathervalley@gmail.com<br>
+projectweathervalley@gmail.com <br> 
+</div>
+
+<img src=map.png width=380px height=280px style="margin-left:255px;margin-top:15px;border:2px solid black">
+
+
+
+
+
+   <div id="footer">
+<p style="display:inline-block;
+    margin-bottom: 5px;">Copyright© WeatherValley.com</p>
+<p id="pg" style="display:inline-block;float:right;
+    margin-bottom: 5px;"></p>
+
+
+
+
+</div>
+<div id="displaybox" style="display: none;"></div>
+ </body>
+</html>
