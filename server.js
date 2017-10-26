@@ -192,7 +192,7 @@ app.post('/welcome',(req,res) => {
     if(exist) {
       console.log('The User Exists',exist);
       if(userInfo.pass === exist.pass)
-        res.render('welcomePage.hbs',exist);
+        res.render('userWelcome.hbs',exist);
       else {
         res.render('wrongPass.hbs');
       }
@@ -252,12 +252,63 @@ app.listen(port, () => {
   var currentDay = moment().format("dddd");
   console.log("Current Date Is: ",currentDay);
   
-  if(currentDay === 'Wednesday') {
+  if(currentDay === 'Monday') {
     fs.readFile('./flag.txt','utf8', (err, data) => {
       if (err) throw err;
       console.log(data);
       if(data === 'NO') {
+        fetchpin((err,data) => {
+          if(err) return res.status(400).send('<h1> ERROR!! Unable to fetch the database</h1>');
+          else{
+            if(!data) return res.status(400).send('<h1> ERROR!! Database Empty! </h1>');
+            else {
+              var len = data.length;
+      
+              for(var i=0;i<len;i++){
+      
+                console.log('Data[i]: \n', JSON.stringify(data[i],undefined,2));
+                let tempData = data[i];
+                Weather.findOne({
+                  lat: data[i].lat,
+                  lng: data[i].lng
+                },(err,result) => {
+                  // console.log(tempData,'inside then call');
+                  if(!result){
+                    // console.log(tempData);
+                    console.log(tempData,'is being saved');
+                    getWeather(tempData.lat,tempData.lng,(err,weather) => {
+                      if(err) console.log(err);
+                      else {
+                        console.log(weather);
+                        // res.send(weather);
+                        enterWeather = new Weather(weather);
+                        enterWeather.save();
+                      }
+                    });
+      
+                  }
+                  else {
+                    console.log(tempData,'Already exists');
+                  }
+                })
+              }
+      
+              res.send('<h1> WOWWAWW</h1>');
+            }
+          }
+        })
         fs.writeFile('flag.txt', 'YES', (err) => {
+          if (err) throw err;
+          console.log('The file has been saved!');
+        });
+      }
+    });
+  } else if(currentDay === 'Tuesday') {
+    fs.readFile('./flag.txt','utf8', (err, data) => {
+      if (err) throw err;
+      console.log(data);
+      if(data === 'YES') {
+        fs.writeFile('flag.txt', 'NO', (err) => {
           if (err) throw err;
           console.log('The file has been saved!');
         });
