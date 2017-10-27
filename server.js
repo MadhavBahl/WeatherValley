@@ -208,7 +208,8 @@ app.post('/welcome',(req,res) => {
             console.log('Response: ', payload);
             var sendInfo = {
               name: exist.name,
-              ip: ip
+              ip: ip,
+              payload: payload
             }
             res.render('userWelcome.hbs',sendInfo);
           }
