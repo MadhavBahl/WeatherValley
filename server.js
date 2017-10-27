@@ -5,6 +5,7 @@ var moment = require('moment');
 const hbs = require('hbs');
 var fs = require('fs');
 var request = require('request');
+var satelize = require('satelize');
 
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');
@@ -192,8 +193,27 @@ app.post('/welcome',(req,res) => {
   checkExistingUser(userInfo,(exist) => {
     if(exist) {
       console.log('The User Exists',exist);
-      if(userInfo.pass === exist.pass)
-        res.render('userWelcome.hbs',exist);
+      if(userInfo.pass === exist.pass){
+        
+        // Example retrieve IP from request 
+        var ip = req.header('x-forwarded-for') || req.connection.remoteAddress; 
+        console.log('IP Address is : ', ip);
+        // then satelize call 
+        
+        satelize.satelize({ip}, function(err, payload) {
+          if(err) {
+            console.log('Error!',err);
+            res.render('userWelcome.hbs',exist);
+          } else {
+            console.log('Response: ', payload);
+            var sendInfo = {
+              name: exist.name,
+              ip: ip
+            }
+            res.render('userWelcome.hbs',sendInfo);
+          }
+        });
+      }
       else {
         res.render('wrongPass.hbs');
       }

@@ -13,7 +13,9 @@
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.11",
     "nodemailer": "^4.1.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "satelize": "^0.2.0",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {},
   "scripts": {
