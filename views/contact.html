@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+ <head><title>Reach us</title>
+ <link rel="stylesheet" type="text/css" href="css/main2.css"/>
+
+<style>
+#displaybox {
+	z-index: 10000;
+	opacity: 0.9;
+	background-color:#000000;
+	position:fixed; top:80px; left:280px; width:60%; height:80%; color:#FFFFFf; vertical-align:middle;
+}
+</style>
+
+<style>
+body{
+background-repeat: no-repeat;
+background-size:100% 100%;
+}
+</style>
+
+<script>
+
+
+function updateClock( )
+{
+  var currentTime = new Date ( );
+  var currentHours = currentTime.getHours ( );
+  var currentMinutes = currentTime.getMinutes ( );
+  var currentSeconds = currentTime.getSeconds ( );
+  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+  var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+  currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+  currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+  var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+  document.getElementById("pg").innerHTML=currentTimeString;
+   setTimeout("updateClock()",1000);
+  }
+
+window.onload=updateClock;
+
+
+</script>
+
+
+ </head>
+ <body style="background-size:100% 700px;color:#2929a3">
+
+   <ul>
+      <li><a id="h1" href="index.html">Home</a></li>
+      <li><a id="h2" href="about.html">About us</a></li>
+      <li><a id="h3" class="active" href="contact.html">Reach us</a></li>
+
+   </ul>
+
+<div id="feed">
+<p style="font-size:30px;color:black;text-align:center;">Get in Touch..</p>
+<pre style="color:black;font-size:20px;font-family:New times roman"><form name=fd method="post" action="feed.jsp">
+         Name                 <input type="text" name='nm' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br>
+         Email                 <input type="text" name='email' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br> 
+         Phone number    <input type="text" name='phn' style='color:#000000; font-size: 12px; background-color: #c2c2d6'><br>
+         City                    <input type="text" name='cty' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br>
+         Form Type         <select name="typ" style='color:#000000; font-size: 12px;background-color: #c2c2d6'>
+               <option value="1">Feedback</option>
+               <option value="2">Enquiry</option>
+               <option value="3">Suggestions</option>
+               </select><br>
+         Message            <textarea name="txa" rows=8 cols=8 style='color:#000000; font-size: 12px; ;background-color: #c2c2d6'> </textarea><br>
+                             <input type='submit' value='Submit' style='background-color: #52527a;color: white;font-size: 16px;padding: 12px 32px;text-align: center;'>
+</form>
+</div>
+<div id="cont">
+<b>WeatherValley Pvt. Ltd.</b><br>
+<p style="color:#0066ff">ADDRESS</p>
+Vellore Institute of Technology,
+Vellore<br>
+<p style="color:#0066ff">PHONE NO.</p>
+70xxxxxx56<br>
+96xxxxxx28<br>
+<p style="color:#0066ff">EMAIL</p>
+help.weathervalley@gmail.com<br>
+projectweathervalley@gmail.com <br> 
+</div>
+
+<img src="img/map1.png" width=380px height=280px style="margin-left:255px;margin-top:15px;border:2px solid black">
+
+
+
+
+
+   <div id="footer">
+<p style="display:inline-block;
+    margin-bottom: 5px;">Copyright© WeatherValley.com</p>
+<p id="pg" style="display:inline-block;float:right;
+    margin-bottom: 5px;"></p>
+
+
+
+
+</div>
+<div id="displaybox" style="display: none;"></div>
+ </body>
+</html>

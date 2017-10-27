@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+ <head><title>WeatherValley</title>
+ <link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+<style>
+#displaybox {
+	z-index: 10000;
+	opacity: 0.9;
+	background-color:#000000;
+	position:fixed; top:80px; left:280px; width:60%; height:80%; color:#FFFFFf; vertical-align:middle;
+}
+</style>
+
+<style>
+body{
+background-repeat: no-repeat;
+background-size:100% 100%;
+}
+</style>
+
+<script>
+
+var bgimages=new Array()
+bgimages[0]="img/p11.jpg"
+bgimages[1]="img/p7.jpg"
+bgimages[2]="img/p20.jpg"
+bgimages[3]="img/p6.jpg"
+
+var pathToImg=new Array()
+for (i=0;i<bgimages.length;i++){
+pathToImg[i]=new Image()
+pathToImg[i].src=bgimages[i]
+}
+
+var inc=-1
+
+function bgSlide(){
+if (inc<bgimages.length-1)
+inc++
+else
+inc=0
+document.body.background=pathToImg[inc].src;
+setTimeout("bgSlide()",2500);
+}
+
+function updateClock( )
+{
+  var currentTime = new Date ( );
+  var currentHours = currentTime.getHours ( );
+  var currentMinutes = currentTime.getMinutes ( );
+  var currentSeconds = currentTime.getSeconds ( );
+  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+  var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+  currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+  currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+  var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+  document.getElementById("pg").innerHTML=currentTimeString;
+   setTimeout("updateClock()",1000);
+  }
+function start()
+{
+bgSlide();
+updateClock();
+}
+window.onload=start;
+
+
+</script>
+
+
+ </head>
+ <body style="background-size:100% 700px;color:#2929a3">
+
+   <ul>
+      <li><a class="active" id="h1" href="test1.html">Home</a></li>
+      <li><a id="h2" href="about.html">About us</a></li>
+      <li><a id="h3" href="contact.html">Reach us</a></li>
+   </ul>
+<div id="nav">
+<p style="color:#b30086;font-size:30px">Welcome to our Weather Valley</p>Viewers can register themselves here to join the visualization sessions of climatic conditions of various places, 
+which include the map.<br>
+<img src="img/p1.jpg" style="width:400px; height: 300px;" >
+</div>
+   <div class="hello">
+    <pre><h1 style="font-size:110px;font-family:Arial Rounded MT Bold"> Weather Valley </h1></pre>
+
+   </div>
+
+   <div id="footer">
+<p style="display:inline-block;
+    margin-bottom: 5px;">Copyright © Weathervalley.com</p>
+<p id="pg" style="display:inline-block;float:right;
+    margin-bottom: 5px;"></p>
+
+
+</div>
+<div id="displaybox" style="display: none;"></div>
+ </body>
+</html>

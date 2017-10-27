@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+ <head><title>About us</title>
+ <link rel="stylesheet" type="text/css" href="css/main1.css"/>
+
+<style>
+#displaybox {
+	z-index: 10000;
+	opacity: 0.9;
+	background-color:#000000;
+	position:fixed; top:80px; left:280px; width:60%; height:80%; color:#FFFFFf; vertical-align:middle;
+}
+</style>
+
+<style>
+body{
+background-repeat: no-repeat;
+background-size:100% 100%;
+}
+</style>
+
+<script>
+
+
+
+function updateClock( )
+{
+  var currentTime = new Date ( );
+  var currentHours = currentTime.getHours ( );
+  var currentMinutes = currentTime.getMinutes ( );
+  var currentSeconds = currentTime.getSeconds ( );
+  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+  var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+  currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+  currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+  var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+  document.getElementById("pg").innerHTML=currentTimeString;
+   setTimeout("updateClock()",1000);
+  }
+
+window.onload=updateClock;
+
+
+</script>
+
+
+ </head>
+ <body style="background-size:100% 700px;color:#2929a3">
+
+   <ul>
+      <li><a id="h1" href="index.html">Home</a></li>
+      <li><a class="active" id="h2" href="about.html">About us</a></li>
+      <li><a id="h3" href="contact.html">Reach us</a></li>
+
+   </ul>
+<div class="circle"><img src="img/mission1.png" height=265px width=265px></div><p style="position:absolute;margin-left:140px;margin-top:300px;font-size:30px;color:black;">MISSION</p>
+<p style="position:absolute;margin-left:105px;margin-top:350px;font-size:18px;color:#2929a3">Our aim is to:<br>
+<ol style="position:absolute;margin-left:80px;margin-top:380px;font-size:18px;color:#2929a3">
+<li>Provide standard weather reports to <br> Public</li><br>
+<li>Keep them informed about <br> climatic changes</li><br>
+<li>Impart proper knowledge and<br> understanding of weather</li><br>
+<li>Generate awareness in them for<br> natural calamities if any</li>
+</ol>
+
+</p>
+<div class="circle1"><img src="img/vision.png" height=210px width=210px style="margin-left:27px;margin-top:27px"></div><p style="position:absolute;margin-left:630px;margin-top:283px;font-size:30px;color:black;">VISION</p>
+<p style="position:absolute;margin-left:580px;margin-top:338px;font-size:18px;color:#2929a3">We seek to:<br>
+<ol style="position:absolute;margin-left:557px;margin-top:365px;font-size:18px;color:#2929a3">
+<li>Bring a change in the weather forcasting <br> system of the country</li><br>
+<li>Use modern technology in the<br> field of weather forcasting by giving online<br> tutorials</li>
+</ol>
+</p>
+
+<div class="circle2"><img src="img/value1.png" height=265px width=265px></div><p style="position:absolute;margin-left:1110px;margin-top:283px;font-size:30px;color:black;">VALUES</p>
+<p style="position:absolute;margin-left:1065px;margin-top:338px;font-size:18px;color:#2929a3">We believe in:<br>
+<ol style="position:absolute;margin-left:1044px;margin-top:365px;font-size:18px;color:#2929a3">
+<li>Expertise</li><br>
+<li>Commitment</li><br>
+<li>Quality</li><br>
+<li>Professionalism</li><br>
+<li>Responsiveness</li><br>
+<li>Integrity</li><br>
+</ol>
+</p>
+
+   <div id="footer">
+<p style="display:inline-block;
+    margin-bottom: 5px;">Copyright © WeatherValley.com</p>
+<p id="pg" style="display:inline-block;float:right;
+    margin-bottom: 5px;"></p>
+
+
+
+
+</div>
+<div id="displaybox" style="display: none;"></div>
+ </body>
+</html>

@@ -200,18 +200,32 @@ app.post('/welcome',(req,res) => {
         console.log('IP Address is : ', ip);
         // then satelize call 
         
-        satelize.satelize({ip}, function(err, payload) {
+        satelize.satelize({ip: '157.50.8.68'}, function(err, payload) {
           if(err) {
             console.log('Error!',err);
             res.render('userWelcome.hbs',exist);
           } else {
             console.log('Response: ', payload);
-            var sendInfo = {
-              name: exist.name,
-              ip: ip,
-              payload: payload
-            }
-            res.render('userWelcome.hbs',sendInfo);
+            
+            request({
+              url: `https://api.darksky.net/forecast/f1d413224992adae584dd90b72f51905/${payload.latitude},${payload.longitude}`,
+              json: true
+            }, (err,resp,body) => {
+              var currentWeather;
+              if(err) {
+                currentWeather = 'Couldn\' fetch the weather from our data base, please try somoetime later';
+              } else { 
+                currentWeather = (body.currently.temperature - 32)/1.8;
+              }
+              var sendInfo = {
+                name: exist.name,
+                ip: '157.50.8.68',
+                payload: payload,
+                currentWeather: currentWeather
+              }
+              res.render('userWelcome.hbs',sendInfo);
+            });
+            
           }
         });
       }
