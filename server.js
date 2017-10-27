@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 const hbs = require('hbs');
 var fs = require('fs');
+var request = require('request');
 
 var mailer = require('./serverFiles/mailer');
 var addUserData = require('./serverFiles/addUserData');

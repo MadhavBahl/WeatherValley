@@ -13,7 +13,7 @@
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.11",
     "nodemailer": "^4.1.0",
-    "request": "^2.81.0"
+    "request": "^2.83.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -52,32 +52,118 @@ background-size:100% 100%;
 </style>
 
 <script>
+function signup()
+{
+var fname=document.f1.unm.value;
+var lname=document.f1.lnm.value;
+var email=document.f1.eml.value;
+var dotp=email.lastIndexOf(".");
+var atp=email.indexOf("@");
+var dob=document.f1.dt.value;
+var dat=new Date(dob);
+var ps1=document.f1.psw1.value;
+var ps2=document.f1.psw2.value;
+var rgx=/^[A-Za-z]+$/;
+var rgp=/^[A-Za-z][A-Za-z0-9]{5,11}$/;
+cs=document.f1.gn;
+var valgn;
+for(i=0;i<cs.length;i++)
+{
+if(cs[i].checked)
+{
+valgn=cs[i].value;
+break;
+}
+}
+if(!(fname.match(rgx)))
+{
+alert("First Name should contain only alphabets!");
+return false;
+}
+else if(!(lname.match(rgx)))
+{
+alert("Last Name should contain only alphabets!");
+return false;
+}
+else if(atp<1 || dotp<atp+2 || dotp+2>=email.length)
+{
+alert("Enter correct email!");
+return false;
+}
+else if(!(ps1.match(rgp)))
+{
+alert("Password should be alphanumeric, with first character as an alphabet and length 6-12!");
+return false;
+}
+else if(ps1!=ps2)
+{
+alert("Passwords do not match!");
+return false;
+}
+else if(dob=="")
+{
+alert("Enter date!");
+return false;
+}
+else if((dat.getFullYear())>2000)
+{
+alert("Your age must be greater than or equal to 16 years!");
+return false;
+}
+else if(i==cs.length)
+{
+alert("Select your sex!");
+return false;
+}
+else
+return true;
+}
+
+function login()
+{
+var email=document.f2.em.value;
+var dotp=email.lastIndexOf(".");
+var atp=email.indexOf("@");
+var ps1=document.f2.psd.value;
+var rgp=/^[A-Za-z][A-Za-z0-9]{5,11}$/;
+if(atp<1 || dotp<atp+2 || dotp+2>=email.length)
+{
+alert("Enter correct email!");
+return false;
+}
+else if(!(ps1.match(rgp)))
+{
+alert("Password should be alphanumeric, with first character as an alphabet and length 6-12!");
+return false;
+}
+else
+return true;
+}
 
 
+function updateClock( )
+{
+  var currentTime = new Date ( );
+  var currentHours = currentTime.getHours ( );
+  var currentMinutes = currentTime.getMinutes ( );
+  var currentSeconds = currentTime.getSeconds ( );
+  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+  var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+  currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+  currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+  var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+  document.getElementById("pg").innerHTML=currentTimeString;
+   setTimeout("updateClock()",1000);
+  }
 
-        function updateClock( )
-        {
-        var currentTime = new Date ( );
-        var currentHours = currentTime.getHours ( );
-        var currentMinutes = currentTime.getMinutes ( );
-        var currentSeconds = currentTime.getSeconds ( );
-        currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-        currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-        var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
-        currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-        currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-        var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-        document.getElementById("pg").innerHTML=currentTimeString;
-        setTimeout("updateClock()",1000);
-        }
-
-        window.onload=updateClock;
+window.onload=updateClock;
 
 
 </script>
 
 
-</head>
+ </head>
  <body style="background-size:100% 700px;color:#2929a3">
 
    <ul>
@@ -115,11 +201,11 @@ Vellore<br>
 7092023456<br>
 9629354328<br>
 <p style="color:#0066ff">EMAIL</p>
-projectweathervalley@gmail.com<br>
-projectweathervalley@gmail.com <br> 
+help.weathervalley@gmail.com<br>
+inquiry.weathervalley@gmail.com <br> 
 </div>
 
-<img src=map.png width=380px height=280px style="margin-left:255px;margin-top:15px;border:2px solid black">
+<img src=map1.png width=380px height=280px style="margin-left:255px;margin-top:15px;border:2px solid black">
 
 
 
