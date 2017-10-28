@@ -200,7 +200,7 @@ app.post('/welcome',(req,res) => {
         console.log('IP Address is : ', ip);
         // then satelize call 
         
-        satelize.satelize({ip: '157.50.8.68'}, function(err, payload) {
+        satelize.satelize({ip}, function(err, payload) {
           if(err) {
             console.log('Error!',err);
             res.render('userWelcome.hbs',exist);

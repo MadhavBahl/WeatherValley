@@ -79,16 +79,21 @@
 						 <div class="clearfix"></div>
 					 </div>
 					 <div class="content-grid-info">
-						 <h3><a href="single.html">Hello, {{name}}</a></h3>
+						 <h3><a href="#">Hello, <span id="name">{{name}}</span></a></h3>
 						 <h4>Current Weather in your locality: {{currentWeather}} &#176 C</h4><br />
 						 <h4>Never worry, we have you covered</h4><br />
 						 <h5>Your Position Longitude: <span id="lat"></span> &#176</h5>
 						 <h5>Your Position Latitude: <span id="lng"></span> &#176</h5>
+						<br />
+						 <div style="height: 670px; width: 670px;" id="map"></div>
+
 						 <a class="bttn" id="sendLocation" target="_blank" href="#">View Full Location</a>
+						 <a class="bttn" id="chatApp" target="_blank" href="#">CHAT  with other weather enthusiasts</a><br />
 						 <a class="bttn" href="#">MORE</a>
 
 					</div>
 				 </div>
+				 
 				 
 			 </div>
 			 
@@ -151,6 +156,9 @@
    </script>
    <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
    <script src="assets/js/getCurrentLocation.js"></script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP9TXTYbKdJLCk0xBTgAIsPMgVzjpOfZw&callback=initMap">
+	</script>
 
 </body>
 </html>
