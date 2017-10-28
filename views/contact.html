@@ -1,104 +1,150 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
- <head><title>Reach us</title>
- <link rel="stylesheet" type="text/css" href="css/main2.css"/>
-
-<style>
-#displaybox {
-	z-index: 10000;
-	opacity: 0.9;
-	background-color:#000000;
-	position:fixed; top:80px; left:280px; width:60%; height:80%; color:#FFFFFf; vertical-align:middle;
-}
-</style>
-
-<style>
-body{
-background-repeat: no-repeat;
-background-size:100% 100%;
-}
-</style>
-
-<script>
-
-
-function updateClock( )
-{
-  var currentTime = new Date ( );
-  var currentHours = currentTime.getHours ( );
-  var currentMinutes = currentTime.getMinutes ( );
-  var currentSeconds = currentTime.getSeconds ( );
-  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-  var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
-  currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-  currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-  var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-  document.getElementById("pg").innerHTML=currentTimeString;
-   setTimeout("updateClock()",1000);
-  }
-
-window.onload=updateClock;
-
-
+<head>
+	<title>Weather Valley</title>
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Blogname Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" 
+	/>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!----webfonts---->
+		<link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+		<!----//webfonts---->
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!--end slider -->
+				<!--script-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
 </script>
-
-
- </head>
- <body style="background-size:100% 700px;color:#2929a3">
-
-   <ul>
-      <li><a id="h1" href="index.html">Home</a></li>
-      <li><a id="h2" href="about.html">About us</a></li>
-      <li><a id="h3" class="active" href="contact.html">Reach us</a></li>
-
-   </ul>
-
-<div id="feed">
-<p style="font-size:30px;color:black;text-align:center;">Get in Touch..</p>
-<pre style="color:black;font-size:20px;font-family:New times roman"><form name=fd method="post" action="feed.jsp">
-         Name                 <input type="text" name='nm' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br>
-         Email                 <input type="text" name='email' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br> 
-         Phone number    <input type="text" name='phn' style='color:#000000; font-size: 12px; background-color: #c2c2d6'><br>
-         City                    <input type="text" name='cty' style='color:#000000; font-size: 12px;background-color: #c2c2d6'><br>
-         Form Type         <select name="typ" style='color:#000000; font-size: 12px;background-color: #c2c2d6'>
-               <option value="1">Feedback</option>
-               <option value="2">Enquiry</option>
-               <option value="3">Suggestions</option>
-               </select><br>
-         Message            <textarea name="txa" rows=8 cols=8 style='color:#000000; font-size: 12px; ;background-color: #c2c2d6'> </textarea><br>
-                             <input type='submit' value='Submit' style='background-color: #52527a;color: white;font-size: 16px;padding: 12px 32px;text-align: center;'>
-</form>
+<!---->
+</head>
+<body>
+<!---strat-banner---->
+<div class="banner">				
+	 <div class="header">  
+		  <div class="container">
+			  <div class="logo">
+					<a href="/userWelcome"> <img style="height: 40px;" src="images/logo.png" title="Weather Valley" /></a>
+			 </div>
+			 <!---start-top-nav---->
+			 <div class="top-menu">
+				  <span class="menu"> </span> 
+				   <ul>
+						<li><a href="userWelcome.hbs">HOME</a></li>						
+						<li class="active"><a href="contact.html">CONTACT</a></li>	
+						<li><a href="terms.html">TERMS</a></li>						
+						<div class="clearfix"> </div>
+				 </ul>
+			 </div>
+					<script>
+					$("span.menu").click(function(){
+					$(".top-menu ul").slideToggle("slow" , function(){
+					});
+					});
+					</script>
+				<!---//End-top-nav---->					
+		 </div>
+	 </div>
+	 <div class="container">
+		 <div class="banner-head">
+			 <h1>Weather Valley</h1>
+			 <h2>A weather forecasting database you can rely upon</h2>
+		 </div>		
+	 </div>
 </div>
-<div id="cont">
-<b>WeatherValley Pvt. Ltd.</b><br>
-<p style="color:#0066ff">ADDRESS</p>
-Vellore Institute of Technology,
-Vellore<br>
-<p style="color:#0066ff">PHONE NO.</p>
-70xxxxxx56<br>
-96xxxxxx28<br>
-<p style="color:#0066ff">EMAIL</p>
-help.weathervalley@gmail.com<br>
-projectweathervalley@gmail.com <br> 
+<!---//End-banner---->
+<div class="contact">
+	 <div class="container">
+		 <div class="contact-head">
+			 <h3>CONTACT</h3>
+			  <form>
+				  <div class="col-md-6 contact-left">
+						<input type="text" placeholder="Name" required/>
+						<input type="text" placeholder="E-mail" required/>
+						<input type="text" placeholder="Phone" required/>
+				 </div>
+				 <div class="col-md-6 contact-right">
+						 <textarea placeholder="Message"></textarea>
+						 <input type="submit" value="SEND"/>
+				 </div>
+				 <div class="clearfix"></div>
+			 </form>
+		 </div>
+		 <div class="address">
+			 <h3>Our Locations</h3>
+			 
+			 <div class="col-md-12 center locations" style="text-align: center;">				 
+				  <ul>
+					 <li><span></span></li>					 					
+					 <li>
+						 <div class="address-info">	
+							 <h4>VIT Vellore</h4>
+							 <p>Near Katpadi Road</p>
+							 <p>632014</p>
+							 <p>Phone: 91xxxxxx80</p>
+							 <p>Mail: <a href="mailto:info@example.com">projectweathervalley@gmail.com</a></p>
+						 </div>
+					 </li>				
+				  </ul>	
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
 </div>
-
-<img src="img/map1.png" width=380px height=280px style="margin-left:255px;margin-top:15px;border:2px solid black">
-
-
-
-
-
-   <div id="footer">
-<p style="display:inline-block;
-    margin-bottom: 5px;">Copyright© WeatherValley.com</p>
-<p id="pg" style="display:inline-block;float:right;
-    margin-bottom: 5px;"></p>
-
-
-
-
+<!--fotter-->
+<div class="fotter">
+	 <div class="container">
+		 <div class="col-md-4 fotter-info">
+			 <h3>Project Weather Valley</h3>
+			 <p>A weather forecasting database you can rely upon</p>
+			 <p>
+				 Weather forecasting is the prediction of what the atmosphere 
+				 will be like in a particular place by using technology and 
+				 scientific knowledge to make weather observations. In other 
+				 words, it's a way of predicting things like cloud cover, rain, 
+				 snow, wind speed and temperature before they happen. 
+			</p>
+		 </div>
+		 <div class="col-md-4 fotter-list">
+			 <h3>DEVELOPERS - meet people assciated  </h3>
+			 <ul>
+			 <li><a href="#">MADHAV BAHL (16BCE2311)</a></li>
+			 <li><a href="#">DILSHATH (16BCE0669)</a></li>
+			 </ul>
+		 </div>
+		 <div class="col-md-4 fotter-media">
+				<h3>FOLLOW US ON....</h3>
+				 <div class="social-icons">
+				 <a href="#"><span class="fb"> </span></a>
+				 <a href="#"><span class="twt"> </span></a>
+				 <a href="#"><span class="in"> </span></a>				 			 
+			    </div>
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
 </div>
-<div id="displaybox" style="display: none;"></div>
- </body>
+<!---fotter/-->
+
+<script type="text/javascript">
+		$(document).ready(function() {
+		$().UItoTop({ easingType: 'easeOutQuart' });
+});
+</script>
+<a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+
+</body>
 </html>
