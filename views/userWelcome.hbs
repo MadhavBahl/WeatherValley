@@ -52,8 +52,8 @@
 			 <div class="clearfix"></div>
 					<script>
 					$("span.menu").click(function(){
-					$(".top-menu ul").slideToggle("slow" , function(){
-					});
+						$(".top-menu ul").slideToggle("slow" , function(){
+						});
 					});
 					</script>
 				<!---//End-top-nav---->					
@@ -89,7 +89,13 @@
 
 						 <a class="bttn" id="sendLocation" target="_blank" href="#">View Full Location</a>
 						 <a class="bttn" id="chatApp" target="_blank" href="#">CHAT  with other weather enthusiasts</a><br />
-						 <a class="bttn" href="#">MORE</a>
+						 
+						 <a class="bttn" target="_blank" href="https://maps.ngdc.noaa.gov/viewers/hazards/">NATURAL HAZARDS DATASET CUM MAP VIEWER</a><br />
+						 <a class="bttn" href="#">MORE</a><br /> 
+
+						 <form action="/getRaw" method="POST">
+							 <button target="_blank" class="bttn"><a class="bttn" target="_blank">Download RAW JSON Dataset: (DEVELOPERS INTREST)</a></button>
+						 </form>
 
 					</div>
 				 </div>

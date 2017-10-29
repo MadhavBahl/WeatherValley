@@ -76,7 +76,7 @@ app.get('/getWeather',(req,res) => {
   fetchWeatherFromDB((err,data) => {
     if(err) res.status(400).send(`<h1> ERROR!!!! ${err}`)
     else res.send(data);
-  })
+  });
 });
 
 
@@ -213,13 +213,13 @@ app.post('/welcome',(req,res) => {
             }, (err,resp,body) => {
               var currentWeather;
               if(err) {
-                currentWeather = 'Couldn\' fetch the weather from our data base, please try somoetime later';
+                currentWeather = 'Couldn\'t fetch the weather from our data base, please try somoetime later';
               } else { 
                 currentWeather = (body.currently.temperature - 32)/1.8;
               }
               var sendInfo = {
                 name: exist.name,
-                ip: '157.50.8.68',
+                ip: ip,
                 payload: payload,
                 currentWeather: currentWeather
               }
@@ -236,6 +236,15 @@ app.post('/welcome',(req,res) => {
       res.render('loginFALSEsignup.hbs');
     }
   });
+});
+
+app.post('/getRaw',(req,res) => {
+  fetchWeatherFromDB((err,data) => {
+    if(err) res.status(400).send(`<h1> ERROR!!!! ${err}`)
+    else res.send(data);
+  });
+
+
 });
 
 app.post('/sendUserInfo',(req,res) => {
