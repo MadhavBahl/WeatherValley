@@ -200,7 +200,7 @@ app.post('/welcome',(req,res) => {
         console.log('IP Address is : ', ip);
         // then satelize call 
         
-        satelize.satelize({ip}, function(err, payload) {
+        satelize.satelize({ip:'115.248.50.24'}, function(err, payload) {
           if(err) {
             console.log('Error!',err);
             res.render('userWelcome.hbs',exist);
@@ -219,7 +219,7 @@ app.post('/welcome',(req,res) => {
               }
               var sendInfo = {
                 name: exist.name,
-                ip: ip,
+                ip: '115.248.50.24',
                 payload: payload,
                 currentWeather: currentWeather
               }
